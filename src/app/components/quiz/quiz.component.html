@@ -1,0 +1,149 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 border">
+      <h3 class="text-center">#Quiz1</h3>
+      <div *ngIf="quiz1Screen">
+        <h6>Quiz Instructions:</h6>
+        <div class="fontSize">
+          * "Start Quiz" button on clicking that button, the quiz will start and asks 20 mathematical questions.<br>
+          * You are able to enter answer, and click next button(until all questions are not attempted).<br>
+          * You are not be allowed to go back and edit answers.<br>
+          * There is no negative marking.<br>
+          * Each correct answer will give you 10 marks.
+        </div>
+        <br>
+        <button class="btn btn-info btn-sm" (click)="startTest1()">Start Quiz</button>
+      </div>
+
+      <div *ngIf="!quiz1Screen && !completeFlagQuiz1" step="0.01">
+        <p>Q.{{quiz1.count}} Solve expression {{quiz1.var_1}} {{quiz1.op}} {{quiz1.var_2}} = ?</p>
+        Enter your response here <input type="number" [(ngModel)]="quiz1.input" #input1="ngModel">
+        <br><br>
+        <div class="fontSize">
+          * If you are getting answer in points submit answer till 2 precission after point with round off.
+        </div>  
+        <br><br>
+        <button class="btn btn-sm btn-info" (click)="next1()">Next Question</button>
+        <br><br>
+        <div>Your Score: {{ quiz1.score }}</div>
+      </div>
+
+      <div *ngIf="completeFlagQuiz1 && !tableQuiz1">
+        <p>Your Test has been sumitted successfully.</p>
+        <button class="btn btn-sm btn-success" (click)="report1()">Check Your report</button>
+      </div>
+      <div *ngIf="tableQuiz1" class="table-responsive text-center">
+          <h3>Your Final Score is {{ quiz1.score }}</h3>
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th class="text-center">SN0.</th>
+                <th class="text-center">Expression</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Your Response</th>
+                <th class="text-center">Right Answer</th>
+                <th class="text-center">Points</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th class="text-center">SN0.</th>
+                <th class="text-center">Expression</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Your Response</th>
+                <th class="text-center">Right Answer</th>
+                <th class="text-center">Points</th>
+              </tr>
+            </tfoot>
+            
+            <tbody>
+              <tr *ngFor="let question of quiz1questions">
+                <td>Q.{{ question.question_no }}</td>
+                <td>{{question.var1}} {{question.operator}} {{question.var2}}</td>
+                <td *ngIf="question.status" class="text-success">Correct</td>
+                <td *ngIf="!question.status" class="text-danger">Wrong</td>
+                <td>{{ question.submit_answer }}</td>
+                <td>{{ question.right_answer }}</td>
+                <td>+{{ question.score }}</td>
+              </tr> 
+            </tbody>
+          </table>
+          <button class="btn btn-info btn-sm" (click)="home1()">Home</button>
+      </div>
+    </div>
+
+    <div class="col-md-6 border">
+      <h3 class="text-center">#Quiz2</h3>
+      <div *ngIf="quiz2Screen">
+        <h6>Quiz Instructions:</h6>
+        <div class="fontSize">
+          * "Start Quiz" button on clicking that button, the quiz will start and asks 20 mathematical questions.<br>
+          * You are able to enter answer, and click next button(until all questions are not attempted).<br>
+          * You are not be allowed to go back and edit answers.<br>
+          * There is no negative marking.<br>
+          * Each correct answer will give you 10 marks.
+        </div>
+        <br>
+        <button class="btn btn-info btn-sm" (click)="startTest2()">Start Quiz</button>
+      </div>
+
+      <div *ngIf="!quiz2Screen && !completeFlagQuiz2" step="0.01">
+        <p>Q.{{quiz2.count}} Solve expression {{quiz2.var_1}} {{quiz2.op}} {{quiz2.var_2}} = ?</p>
+        Enter your response here <input type="number" [(ngModel)]="quiz2.input" #input2="ngModel">
+        <br><br>
+        <div class="fontSize">
+          * If you are getting answer in points submit answer till 2 precission after point with round off.
+        </div>
+        <br><br>
+        <button class="btn btn-sm btn-info"(click)="next2()">Next Question</button>
+        <br><br>
+        <div>Your Score: {{ quiz2.score }}</div>
+      </div>
+
+      <div *ngIf="completeFlagQuiz2 && !tableQuiz2">
+        <p>Your Test has been sumitted successfully.</p>
+        <button class="btn btn-sm btn-success" (click)="report2()">Check Your report</button>
+      </div>
+      <div *ngIf="tableQuiz2" class="table-responsive text-center">
+        <h3>Your Final Score is {{ quiz2.score }}</h3>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th class="text-center">SN0.</th>
+              <th class="text-center">Expression</th>
+              <th class="text-center">Status</th>
+              <th class="text-center">Your Response</th>
+              <th class="text-center">Right Answer</th>
+              <th class="text-center">Points</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th class="text-center">SN0.</th>
+              <th class="text-center">Expression</th>
+              <th class="text-center">Status</th>
+              <th class="text-center">Your Response</th>
+              <th class="text-center">Right Answer</th>
+              <th class="text-center">Points</th>
+            </tr>
+          </tfoot>
+          
+          <tbody>
+            <tr *ngFor="let question of quiz2questions">
+              <td>Q.{{ question.question_no }}</td>
+              <td>{{question.var1}} {{question.operator}} {{question.var2}}</td>
+              <td *ngIf="question.status" class="text-success">Correct</td>
+              <td *ngIf="!question.status" class="text-danger">Wrong</td>
+              <td>{{ question.submit_answer }}</td>
+              <td>{{ question.right_answer }}</td>
+              <td>+{{ question.score }}</td>
+            </tr> 
+          </tbody>
+        </table>
+        <button class="btn btn-info btn-sm" (click)="home2()">Home</button>
+    </div>
+    </div>
+  </div>
+</div>
+

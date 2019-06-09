@@ -1,0 +1,16 @@
+.use{
+    position: fixed;
+    background-color: #343a40!important;
+    width: 100%;
+    z-index: 1;
+  }
+
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.logocolor {
+    color: #007bff !important;
+}
+
